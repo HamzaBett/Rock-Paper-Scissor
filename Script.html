@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+</head>
+<body>
+    <!-- Content goes here -->
+
+    <script>
+        // JavaScript code goes here
+        const promp = ['rock', 'paper','scissors'];
+        let humanScore = 0;
+        let computerScore = 0;
+
+        let getComputerChoice = function() {
+            let randomIndex = Math.floor(Math.random() * promp.length);
+            let compChoice = promp[randomIndex];
+            console.log(`Computer choice is ${compChoice}`);
+            return compChoice;
+        }
+
+        let getHumanChoice = function() {
+            let humanChoice = prompt("Let's Play Rock Paper Scissors");
+            humanChoice = humanChoice.toLowerCase();
+            console.log(`Human choice: ${humanChoice}`);
+            return humanChoice;
+        }
+
+        let playRound = function(humanChoice, compChoice) {
+            if (humanChoice === compChoice) {
+                console.log("It's a draw!");
+            } else if (
+                (humanChoice === "rock" && compChoice === "scissors") ||
+                (humanChoice === "paper" && compChoice === "rock") ||
+                (humanChoice === "scissors" && compChoice === "paper")
+            ) {
+                console.log("You win this round!");
+                humanScore++;
+            } else {
+                console.log("You lose this round!");
+                computerScore++;
+            }
+            alert(`Human choice: ${humanChoice} | Computer choice: ${compChoice}\nHuman Score: ${humanScore} | Computer Score: ${computerScore}`);
+        }
+
+        // Play a best-of-5 rounds game
+        while (humanScore < 5 && computerScore < 5) {
+            let humanSelection = getHumanChoice();
+            let computerSelection = getComputerChoice();
+            playRound(humanSelection, computerSelection);
+        }
+
+        // Determine the winner of the game
+        if (humanScore > computerScore) {
+            alert("Congratulations! You won the game.");
+        } else {
+            alert("Sorry, you lost the game. Better luck next time!");
+        }
+    </script>
+</body>
+</html>
